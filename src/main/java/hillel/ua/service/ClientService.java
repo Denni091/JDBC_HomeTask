@@ -15,7 +15,7 @@ public class ClientService {
     private String QUERY_GET_ALL = "SELECT * FROM clients";
     private String QUERY_SEARCH_PHONE = "SELECT * FROM clients WHERE phone = '972344712'";
     private String QUERY_GET_CLIENTS = "SELECT * FROM clients INNER JOIN accounts a ON clients.id = a.client_id";
-    private String QUERY_GET_ALL_TABLES = "select cl.name client_name, cl.email client_email, cl.phone client_phone, s.alias status_alias from clients cl inner join client_status cs on cl.id = cs.client_id inner join statuses s on cs.status_id = s.id ;";
+    private String QUERY_GET_ALL_TABLES = "select cl.name client_name, cl.email client_email, cl.phone client_phone, s.alias status_alias from clients cl inner join client_status cs on cl.id = cs.client_id inner join statuses s on cs.status_id = s.id where age > 18";
 
 
     public List<Clients> getAll() {
@@ -50,6 +50,7 @@ public class ClientService {
             preparedStatement.setString(2, clients.getEmail());
             preparedStatement.setInt(3, clients.getPhone());
             preparedStatement.setString(4, clients.getAbout());
+            preparedStatement.setString(5, clients.getAge());
             preparedStatement.execute();
             connection.commit();
         } catch (SQLException e) {
@@ -93,6 +94,7 @@ public class ClientService {
                 client.setEmail(resultSet.getString("email"));
                 client.setPhone(resultSet.getInt("phone"));
                 client.setAbout(resultSet.getString("about"));
+                client.setAge(resultSet.getString("age"));
                 clients.add(client);
             }
             connection.commit();
@@ -116,6 +118,7 @@ public class ClientService {
                 client.setEmail(resultSet.getString("email"));
                 client.setPhone(resultSet.getInt("phone"));
                 client.setAbout(resultSet.getString("about"));
+                client.setAge(resultSet.getString("age"));
                 clients.add(client);
             }
             connection.commit();

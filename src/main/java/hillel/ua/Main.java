@@ -19,14 +19,15 @@ public class Main {
         searchPhone.forEach(System.out::println);
         List<Clients> getClients = clientService.getClients();
         getClients.forEach(System.out::println);
-//        List<Clients> getAllTables = clientService.allTable();
-//        getAllTables.forEach(System.out::println);
+        List<Clients> getAllTables = clientService.allTable();
+        getAllTables.forEach(System.out::println);
 
         Clients clients = new Clients();
         clients.setName("Polina");
         clients.setEmail("Porch");
         clients.setPhone(972362782);
         clients.setAbout("Pretty girl");
+        clients.setAge("19");
         clientService.save(clients);
 
         clientService.update(clients);
