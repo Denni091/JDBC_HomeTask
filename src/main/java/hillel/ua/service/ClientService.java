@@ -32,6 +32,7 @@ public class ClientService {
                 clients.setEmail(resultSet.getString("email"));
                 clients.setPhone(resultSet.getInt("phone"));
                 clients.setAbout(resultSet.getString("about"));
+                clients.setAge(resultSet.getString("age"));
                 client.add(clients);
             }
             connection.commit();
